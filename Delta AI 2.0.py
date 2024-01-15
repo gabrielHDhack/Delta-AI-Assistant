@@ -41,11 +41,11 @@ elif now.hour < 18:
 else:
     greeting = 'Good night'
 
-user_home = 'United States of America'
-siblings = 'Cálita and Guilherme'
-best_friend = 'Weveton'
-favorite_color = 'blue'
-user_name = 'Gabriel'
+user_home = 'Unknow'
+siblings = 'Unknow'
+best_friend = 'Unknow'
+favorite_color = 'Unknow'
+user_name = 'Unknow'
 
 current_date = datetime.datetime.now()
 day = current_date.day
@@ -597,7 +597,7 @@ class CommandProcessorThread(QThread):
                        time.sleep(3)    
 
             elif 'weather' in command or 'temterature' in command:
-               api_key = '2817980ed8b96c10646184775f6a6ff7'
+               api_key = 'unkonow'
                base_url = 'http://api.openweathermap.org/data/2.5/weather?'
                city_name = 'Boston,Massachusetts,USA'
                complete_url = base_url + 'appid=' + api_key + '&q=' + city_name
@@ -1397,7 +1397,7 @@ class CommandProcessorThread(QThread):
 
 # to get news in url
 def get_news():
-    api_key = '43b8a7b79970495d92e58b2e8e70829d'
+    api_key = 'unknow
     url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={api_key}'
     response = requests.get(url)
     data = response.json()
