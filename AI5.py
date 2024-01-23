@@ -9,7 +9,7 @@ import json
 
 nlp = spacy.load("en_core_web_lg")
 
-with open('data0.json', 'r') as file:
+with open('data3.json', 'r') as file:
     data = json.load(file)
 
 questions = [entry['question'] for entry in data]
