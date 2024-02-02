@@ -1401,7 +1401,6 @@ class VirtualAssistant(QWidget):
                      "Welcome! How may I assist you with your needs?"]
 
         new_greeting = random.choice(greetings)
-        self.typewrite_animation(new_greeting)
         self.message_label.setWordWrap(True)
 
         user_data_file = 'user_data.json'
