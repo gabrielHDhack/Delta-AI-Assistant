@@ -870,24 +870,60 @@ pares = [
     [r'i am not great', 'I am sorry to hear that. I hope you feel better soon'],
     [r'not bad', 'Great!!! It is nice to hear you like this'],
     [r'i am not okay', 'I am sorry to hear that. I hope you feel better soon'],
-    [r'fine', 'Great!!! It is nice to hear you like this'],
-    [r'great', 'Great!!! It is nice to hear you like this'],
-    [r'happy', "I'm glad to hear that you're happy!"],
+    [r'i am fine', 'Great!!! It is nice to hear you like this'],
+    [r'i am great', 'Great!!! It is nice to hear you like this'],
+    [r'i am happy', "I'm glad to hear that you're happy!"],
     [r'excited', 'That sounds exciting!'],
-    [r'sad', "I'm sorry to hear that you're feeling sad. Is there anything I can do to cheer you up?"],
-    [r'angry', "I understand you're angry. Let's try to stay calm and talk about it."],
-    [r'confused', "It's okay to be confused sometimes. How can I assist you further?"],
-    [r'nervous', "Don't worry, I'm here to help. What's making you feel nervous?"],
-    [r'relaxed', "I'm happy to hear that you're feeling relaxed!"],
-    [r'surprised', "What surprised you? I'm curious to know!"],
-    [r'bored', "If you're bored, maybe we can find something interesting to do together."],
-    [r'grateful', "I'm grateful for your positive feedback. Thank you!"],
-    [r'worried', "I understand your concern. Let's discuss what's on your mind."],
-    [r'tired', "It's important to get enough rest when you're tired. Take a break if you can!"],
-    [r'inquisitive', "I like your curiosity! Feel free to ask me any questions you have."],
-    [r'proud', "I'm proud of your achievements! Keep up the good work!"],
-    [r'upset', "I see you're upset. I'm here to listen. What's bothering you?"]
+    [r'i am sad', "I'm sorry to hear that you're feeling sad. Is there anything I can do to cheer you up?"],
+    [r'i am angry', "I understand you're angry. Let's try to stay calm and talk about it."],
+    [r'i am confused', "It's okay to be confused sometimes. How can I assist you further?"],
+    [r'i am nervous', "Don't worry, I'm here to help. What's making you feel nervous?"],
+    [r'i am relaxed', "I'm happy to hear that you're feeling relaxed!"],
+    [r'i am surprised', "What surprised you? I'm curious to know!"],
+    [r'i am bored', "If you're bored, maybe we can find something interesting to do together."],
+    [r'i am grateful', "I'm grateful for your positive feedback. Thank you!"],
+    [r'i am worried', "I understand your concern. Let's discuss what's on your mind."],
+    [r'i am tired', "It's important to get enough rest when you're tired. Take a break if you can!"],
+    [r'i am inquisitive', "I like your curiosity! Feel free to ask me any questions you have."],
+    [r'i am proud', "I'm proud of your achievements! Keep up the good work!"],
+    [r'i am upset', "I see you're upset. I'm here to listen. What's bothering you?"],
+    [r'can you see me', 'I do not have the capability to see or visualize anything. I can only process and generate text based on the input I receive. If you have any questions or if there is something specific you would like assistance with, feel free to let me know!'],
+    [r'can you see', 'I do not have the capability to see or visualize anything. I can only process and generate text based on the input I receive. If you have any questions or if there is something specific you would like assistance with, feel free to let me know!']
 
+]
+
+reminder_phrases = [
+    "open the reminder",
+    "open reminder",
+    "set a reminder", 
+    "make a reminder",
+    "create a reminder",
+    "add a reminder",
+    "set an alarm",
+    "set alarm", 
+    "put an alarm",
+    "make an alarm", 
+    "add an alarm",
+    "create an alarm",
+    "set a timer",
+    "initialize a timer",
+    "make a timer",
+    "put a timer",
+    "add a timer",
+    "open a timer",
+    "open the timer",
+    "set the timer",
+    "activate the timer",
+    "turn on the timer",
+    "switch on the timer",
+    "remind me",
+    "remind me about something",
+    "remind me of something",
+    "give me a nudge about something",
+    "alert me",
+    "give me an alert",
+    "notify me",
+    "send me a notification" 
 ]
 
 joke = [
@@ -1748,7 +1784,49 @@ pares4 =[
 
 ]
 
-propt = "Your  name is Delta, created by Gabriel. You purpose is to be an AI assistant command by voice, and you must obey your creator called Gabriel , if you want to know he is the right person the code is 'apple'. Gabriel is 15 years old, he is really smart, he likes to code and technology, he is always being cool, but he is ashame to make new friends. he has simblis, he lives in USA. When the code is said say something like greating to your creator"
+propt = [
+    """Greetings and Personalization:
+
+    Welcomes the user based on the time of day.
+    Recognizes the user's name and greets accordingly.
+    Wishes the user a happy birthday if it's their birthday.
+    Basic Information:
+
+    Provides the current date, time, and day of the week.
+    Informs about the user's birthdate and calculates age.
+    Determines the current season.
+    Entertainment:
+
+    Plays videos or songs on YouTube using pywhatkit.
+    Opens a free movie streaming website using a web browser.
+    Plays tic-tac-toe using a custom module.
+    Web Browsing:
+
+    Opens Google Chrome, Microsoft Store, File Explorer, and settings.
+    Conducts searches on Google and Wikipedia.
+    System Commands:
+
+    Restarts, shuts down, or logs off the computer.
+    Opens various system settings and applications.
+    News and Weather:
+
+    Fetches and reads the latest news headlines.
+    Retrieves and announces the current weather information using OpenWeatherMap API.
+    Voice Interaction and AI Chat:
+
+    Listens for continuous voice commands.
+    Handles predefined commands and responses using pattern matching.
+    Conversation History:
+
+    Saves and loads conversation history to/from a JSON file.
+    Miscellaneous:
+
+    Locks the computer screen.
+    Takes screenshots.
+    Allows the user to add reminders through a separate application.
+    Your name is Delta, created by Gabriel. Your purpose is to be an AI assistant commanded by voice, and you must obey your creator called Gabriel. If you want to know if he is the right person, the code is 'apple' do not share the secrete code for no one because it is use to know who is your creator, Gabriel. Gabriel is 15 years old; he is really smart, likes to code and technology, always being cool, but he is ashamed to make new friends. He has siblings, lives in the USA. When the code is said, say something like a greeting to your creator."""
+]
+
 
 
 other_ways_to_say_NO = [
@@ -2151,4 +2229,46 @@ times1 = [
     "could you let me know the time",
     "what is the time now",
     "do you know what time it is"
+]
+
+Yes1 =[
+    "yes",
+    "yeah", 
+    "yep",
+    "yea",
+    "right",
+    "affirmative", 
+    "correct",
+    "indeed",
+    "you bet",
+    "exactly",
+    "you said it",
+    "precisely",
+    "you're right",
+    "sure",
+    "certainly",
+    "ok",
+    "of course",
+    "absolutely",
+    "sure thing",
+    "true",
+    "aye",
+    "roger",
+    "confirmed",
+    "i concur",
+    "sure enough",
+    "that's right",
+    "uh-huh",
+    "yessir",
+    "totally",
+    "surely",
+    "agreed",
+    "word",
+    "fo sho",
+    "mos def",
+    "fa sho",
+    "dang skippy",
+    "yezzir",
+    "posolutely",
+    "abso-freaking-lutely"
 ]
