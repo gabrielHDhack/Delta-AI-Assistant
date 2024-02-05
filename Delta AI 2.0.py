@@ -31,7 +31,8 @@ from patterns_and_responses import (
     pares, stories, joke, fun_facts,
     myself, pares1, excuse, dont_know,
     bad_words, other_ways_to_say_NO,
-    name_change_keywords, not_user, times1
+    name_change_keywords, not_user, times1,
+    Yes1, reminder_phrases
 )
 
 # Outras importações
@@ -74,12 +75,7 @@ birth_date = datetime.datetime(2008, 7, 6)
 age = current_date.year - birth_date.year
 translator = Translator()
 
-user_data_file = 'user_data.json'
 
-if os.path.exists(user_data_file):
-    with open(user_data_file, 'r') as file:
-        user_data = json.load(file)
-        user_name = user_data.get('user_name', '')
 
 if (current_date.month, current_date.day) < (birth_date.month, birth_date.day):
     age -= 1
@@ -115,7 +111,6 @@ model = "2.0"
 #python -m spacy download en_core_web_lg
 nlp = spacy.load("en_core_web_lg")
 
-
 #some predefined commands
 class CommandProcessorThread(QThread):
     def __init__(self, message_label):
@@ -129,9 +124,18 @@ class CommandProcessorThread(QThread):
             self.update_label_text('Listening...')
 
             command = self.listen_for_command()
+            user_data_file = 'user_data.json'
+
+            if os.path.exists(user_data_file):
+                with open(user_data_file, 'r') as file:
+                    user_data = json.load(file)
+                    user_name = user_data.get('user_name', '')
 
             if command:
                 conversation_history.append(f"You: {command}")
+
+            if any(keyword in command for keyword in Yes1):
+                self.speak_response("Great! I'm glad I was able to help you.")    
 
             if any(keyword in command for keyword in times1):
                 current_time = datetime.datetime.now().time()
@@ -165,7 +169,7 @@ class CommandProcessorThread(QThread):
                     self.update_label_text("I'm not sure what you want more of.")
                     engine.say("I'm not sure what you want more of.")
 
-            elif 'remind' in command or 'alarm' in command or 'reminder' in command:
+            elif any(keyword in command for keyword in reminder_phrases):
                engine.say("you can add you reminder using this app. Can you please look at the screen!")
                print("You can add you reminder using this app. Can you please look at the screen!")
                self.update_label_text("You can add you reminder using this app. Can you please look at the screen!")
@@ -1090,7 +1094,7 @@ class CommandProcessorThread(QThread):
             else:
                 user_text = command.lower() 
                 user_doc = nlp(user_text)
-                similarity_threshold = 0.9
+                similarity_threshold = 0.7
                 best_similarity = 0
                 best_response = ""
 
@@ -1224,7 +1228,7 @@ class CommandProcessorThread(QThread):
                     known_question = entry.get("question", "")
                     known_answer = entry.get("answer", "")
                     similarity = nlp(unknown_question).similarity(nlp(known_question))
-                    if similarity > .95:
+                    if similarity > .7:
                         known_responses.append(known_answer)
 
                 if known_responses:
@@ -1234,9 +1238,9 @@ class CommandProcessorThread(QThread):
         except FileNotFoundError:
             pass
 
-        self.speak(selected_excuse + "Can you tell me to help improve my knowledge please! what does it mean?")
-        self.update_label_text(selected_excuse + "Can you tell me to help improve my knowledge please! what does it mean?")
-        print(selected_excuse + "Can you tell me to help improve my knowledge please! what does it mean?")
+        self.speak(selected_excuse + "What does it mean?")
+        self.update_label_text(selected_excuse + "What does it mean?")
+        print(selected_excuse + "What does it mean?")
         user_response = self.listen_for_command()
 
         if user_response and any(keyword in user_response.lower() for keyword in dont_know):
@@ -1303,7 +1307,7 @@ class VirtualAssistant(QWidget):
 
         self.setWindowTitle('Delta AI assistant')
         self.setGeometry(100, 100, 400, 700)
-        self.setWindowIcon(QIcon(r"C:\DeltaAI assistant1\UI5.jpg"))
+        self.setWindowIcon(QIcon(r"C:\DeltaAI1\UI5.jpg"))
         self.setStyleSheet("background-color: #000000;")
 
         self.message_scroll_area = QScrollArea(self)
@@ -1317,7 +1321,7 @@ class VirtualAssistant(QWidget):
 
         self.gif_label = QLabel(self)
         self.gif_label.setGeometry(10, 10, 100, 100)
-        self.load_gif(r"C:\DeltaAI assistant1\gif5.gif")
+        self.load_gif(r"C:\DeltaAI1\gif5.gif")
 
         self.message_scroll_area.setWidget(self.message_label)
 
@@ -1442,7 +1446,7 @@ class VirtualAssistant(QWidget):
         try:
             with sr.Microphone() as source:
                 audio = recognizer.listen(source)
-                name_response = recognizer.recognize_google(audio, language='en-US').capitalize()
+                name_response = recognizer.recognize_google(audio, language='en-US')
             name = name_response.split()[-1]
             messages = f"Hi {name}, nice to meet you! If your  name is incorrect, you can tell me to change it."
             print(messages)
@@ -1451,10 +1455,13 @@ class VirtualAssistant(QWidget):
 
             with open('user_data.json', 'w') as file:
                 json.dump({'user_name': name}, file)
+
         except sr.UnknownValueError:
             print("Sorry, I was not able to recognizer your name.")
+            self.update_message("Sorry, I was not able to recognizer your name.")
         except sr.RequestError as e:
-            print(f"Erro ao fazer a solicitação ao serviço de reconhecimento de fala; {e}")
+            print(f"Error when making a request to the speech recognition service; {e}")
+            self.update_message(f"Error when making a request to the speech recognition service; {e}")
 
         self.message_label.setWordWrap(True)
 
